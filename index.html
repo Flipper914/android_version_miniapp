@@ -194,7 +194,16 @@
                     <button id="copy-ref-link-btn">Copy Referral Link</button>
                 </div>
             </div>
-
+<!-- Reward Modal (Custom - Replaces tg.showAlert) -->
+    <div id="reward-modal" class="modal">
+        <div class="modal-content">
+            <div class="reward-icon">🎉</div>
+            <div class="reward-message" id="reward-message">Congratulations! You've earned 1 points.</div>
+            <div class="reward-countdown">
+                Please wait <span class="countdown-number" id="countdown">10</span> seconds...
+            </div>
+        </div>
+    </div>
             <!-- Tasks Page -->
             <div id="tasks-page" class="page">
                 <h2>Complete Tasks</h2>
@@ -294,7 +303,41 @@
             const referralLinkElem = document.getElementById('referral-link');
             const copyRefLinkBtn = document.getElementById('copy-ref-link-btn');
             const loadingModal = document.getElementById('loading-modal');
-
+            
+            /* Reward Modal Specific Styles */
+        #reward-modal .modal-content {
+            padding: 40px 30px;
+        }
+        .reward-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 0.6s ease;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .reward-message {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .light-theme .reward-message { color: var(--success); }
+        .dark-theme .reward-message { color: var(--success); }
+        .reward-countdown {
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+        .light-theme .reward-countdown { color: var(--subtle-text-light); }
+        .dark-theme .reward-countdown { color: var(--subtle-text-dark); }
+        .countdown-number {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .light-theme .countdown-number { color: var(--primary-color-light); }
+        .dark-theme .countdown-number { color: var(--primary-color-dark); }
+        
             // --- State Management ---
             let userState = {
                 points: 0,
